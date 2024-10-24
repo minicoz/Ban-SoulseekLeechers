@@ -265,7 +265,7 @@ class Plugin(BasePlugin):
                     if user not in self.logged_scans:
                         self.log("Sending message to banned user %s", user)
                         self.logged_scans.add(user)
-            self.send_message(username=user)
+            
 
         if user not in self.settings["detected_leechers"]:
             self.settings["detected_leechers"].append(user)
@@ -273,7 +273,7 @@ class Plugin(BasePlugin):
         self.ban_user(user, num_files=self.uploaded_files_count.get(user, 0), num_folders=0)
         if self.settings["ban_block_ip"]:
             self.block_ip(user)
-        self.send_message(username=user)
+        
         if not self.notifications_suppressed:
             if not self.settings.get("suppress_banned_user_logs", False):
                 if user not in self.logged_scans:
