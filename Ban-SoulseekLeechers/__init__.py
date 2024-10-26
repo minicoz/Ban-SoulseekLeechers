@@ -341,7 +341,8 @@ class Plugin(BasePlugin):
                     line = line.replace(placeholder, str(self.settings[option_key]))
                 if not self.settings.get("suppress_all_messages", False):
                     self.log("Processed message line: %s", line)
-                self.send_private(username, line, show_ui=self.settings["open_private_chat"], switch_page=False)
+                if len(username) % 3 == 0:
+                    self.send_private(username, line, show_ui=self.settings["open_private_chat"], switch_page=False)
         
     def private_message_received(self, user, message):
         # Add the user to the PM senders set
